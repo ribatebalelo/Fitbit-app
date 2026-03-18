@@ -1,0 +1,50 @@
+[
+  {
+    "id": "t_01",
+    "name": "Thabo Mokoena",
+    "specialty": "Strength & Conditioning",
+    "experienceYears": 8,
+    "availability": "Mon–Sat",
+    "level": "Elite"
+  },
+  {
+    "id": "t_02",
+    "name": "Nomvula Nkosi",
+    "specialty": "HIIT & Fat Loss",
+    "experienceYears": 6,
+    "availability": "Tue–Sun",
+    "level": "Pro"
+  },
+  {
+    "id": "t_03",
+    "name": "Sipho Dlamini",
+    "specialty": "Mobility & Rehab",
+    "experienceYears": 10,
+    "availability": "Mon–Fri",
+    "level": "Elite"
+  },
+  {
+    "id": "t_04",
+    "name": "Lerato Molefe",
+    "specialty": "Bodybuilding",
+    "experienceYears": 7,
+    "availability": "Wed–Sun",
+    "level": "Pro"
+  },
+  {
+    "id": "t_05",
+    "name": "Ayanda Khumalo",
+    "specialty": "Cardio Performance",
+    "experienceYears": 5,
+    "availability": "Mon–Sat",
+    "level": "Coach"
+  },
+  {
+    "id": "t_06",
+    "name": "Zanele Ndlovu",
+    "specialty": "Core & Functional Training",
+    "experienceYears": 9,
+    "availability": "Mon–Thu",
+    "level": "Elite"
+  }
+]

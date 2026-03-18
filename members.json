@@ -1,0 +1,24 @@
+[
+  {
+    "id": "m_seed_01",
+    "fullName": "Sibusiso Dlamini",
+    "email": "sibusiso.dlamini@example.co.za",
+    "password": "pass1234",
+    "plan": "Monthly",
+    "status": "Active",
+    "createdAt": "2026-03-01T10:00:00.000Z",
+    "membershipStart": "2026-03-01",
+    "membershipEnd": "2026-03-31"
+  },
+  {
+    "id": "m_seed_02",
+    "fullName": "Lerato Mokoena",
+    "email": "lerato.mokoena@example.co.za",
+    "password": "pass1234",
+    "plan": "Annual",
+    "status": "Pending",
+    "createdAt": "2026-03-10T12:30:00.000Z",
+    "membershipStart": null,
+    "membershipEnd": null
+  }
+]
