@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitBit Gym | Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fitbit border-bottom border-fitbit sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="./index.html">
+          <span class="brand-mark">FB</span>
+          FitBit Gym
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item" data-role="admin-nav"><a class="nav-link" href="./dashboard.html">Member</a></li>
+            <li class="nav-item" data-role="admin-nav"><a class="nav-link active" href="./admin.html">Admin</a></li>
+            <li class="nav-item">
+              <button class="btn btn-outline-fitbit btn-sm ms-lg-2" id="logoutBtn" type="button">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+        <div>
+          <p class="text-white-50 mb-1">Admin Dashboard</p>
+          <h1 class="h3 fw-bold text-white mb-0">Membership approvals & reports</h1>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <a class="btn btn-outline-fitbit" href="./login.html">Admin login</a>
+        </div>
+      </div>
+
+      <div id="alertHost" class="mb-3"></div>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="card card-fitbit h-100">
+            <div class="card-body">
+              <h2 class="h5 fw-bold text-white mb-3">Reports</h2>
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Total members</div>
+                    <div class="stat-value" id="rTotalMembers">0</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Active</div>
+                    <div class="stat-value" id="rActiveMembers">0</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Pending</div>
+                    <div class="stat-value" id="rPendingMembers">0</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Payments total</div>
+                    <div class="stat-value" id="rPaymentsTotal">$0</div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="border-fitbit my-4" />
+
+              <div class="text-white-50 small mb-2">Export mock database</div>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-fitbit btn-sm" id="exportMembersBtn" type="button">Download members.json</button>
+                <button class="btn btn-outline-fitbit btn-sm" id="exportPaymentsBtn" type="button">Download payments.json</button>
+                <button class="btn btn-outline-fitbit btn-sm" id="exportSessionsBtn" type="button">Download sessions.json</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+          <div class="card card-fitbit">
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h2 class="h5 fw-bold text-white mb-0">Members</h2>
+                <div class="d-flex gap-2 flex-wrap">
+                  <input class="form-control form-control-fitbit form-control-sm" id="searchInput" type="search" placeholder="Search name/email…" />
+                  <select class="form-select form-control-fitbit form-select-sm" id="statusFilter">
+                    <option value="all" selected>All statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Active">Active</option>
+                    <option value="Cancelled">Cancelled</option>
+                    <option value="Expired">Expired</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-dark table-fitbit align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Plan</th>
+                      <th>Status</th>
+                      <th>Ends</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="membersTbody">
+                    <tr>
+                      <td colspan="6" class="text-center text-white-50 py-4">No members.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="text-white-50 small mt-3">
+                Approving a member sets them to <span class="text-white">Active</span> and starts the plan term.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      window.FitBitApp?.bootstrap?.();
+      window.FitBitApp?.pages?.admin?.();
+    </script>
+  </body>
+</html>

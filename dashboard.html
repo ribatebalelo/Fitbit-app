@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitBit Gym | Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fitbit border-bottom border-fitbit sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="./index.html">
+          <span class="brand-mark">FB</span>
+          FitBit Gym
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <li class="nav-item"><a class="nav-link active" href="./dashboard.html">Dashboard</a></li>
+            <li class="nav-item" data-role="admin-nav"><a class="nav-link" href="./admin.html">Admin</a></li>
+            <li class="nav-item">
+              <button class="btn btn-outline-fitbit btn-sm ms-lg-2" id="logoutBtn" type="button">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+        <div>
+          <p class="text-white-50 mb-1">Member Dashboard</p>
+          <h1 class="h3 fw-bold text-white mb-0">Hi, <span id="memberName">Member</span></h1>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="btn btn-fitbit" id="renewBtn" type="button">Renew membership</button>
+          <button class="btn btn-outline-danger" id="cancelBtn" type="button">Cancel membership</button>
+        </div>
+      </div>
+
+      <div id="alertHost" class="mb-3"></div>
+
+      <div class="row g-4">
+        <div class="col-12 col-lg-4">
+          <div class="card card-fitbit h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2 class="h5 fw-bold text-white mb-0">Membership</h2>
+                <span class="badge badge-fitbit" id="statusBadge">Pending</span>
+              </div>
+              <div class="text-white-50 small">Plan</div>
+              <div class="text-white fw-semibold mb-3" id="planText">—</div>
+
+              <div class="row g-2">
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Started</div>
+                    <div class="stat-value" id="startDate">—</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-tile">
+                    <div class="stat-label">Expires</div>
+                    <div class="stat-value" id="endDate">—</div>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="border-fitbit my-4" />
+
+              <div class="d-flex align-items-start gap-2">
+                <div class="pill-dot"></div>
+                <div class="text-white-50 small">
+                  New registrations are <span class="text-white">Pending</span> until approved by admin.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-8">
+          <div class="card card-fitbit h-100">
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h2 class="h5 fw-bold text-white mb-0">Payment history</h2>
+                <button class="btn btn-outline-fitbit btn-sm" data-bs-toggle="modal" data-bs-target="#paymentModal" type="button">
+                  Add payment
+                </button>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-dark table-fitbit align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Plan</th>
+                      <th class="text-end">Amount</th>
+                      <th class="text-end">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="paymentsTbody">
+                    <tr>
+                      <td colspan="4" class="text-center text-white-50 py-4">No payments yet.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="card card-fitbit">
+            <div class="card-body">
+              <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                <h2 class="h5 fw-bold text-white mb-0">Trainer scheduling</h2>
+                <div class="text-white-50 small">Book sessions from our trainer list</div>
+              </div>
+
+              <div class="row g-3" id="trainersGrid"></div>
+
+              <hr class="border-fitbit my-4" />
+
+              <h3 class="h6 fw-bold text-white mb-2">Your booked sessions</h3>
+              <div class="table-responsive">
+                <table class="table table-dark table-fitbit align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Trainer</th>
+                      <th>Focus</th>
+                      <th class="text-end">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="sessionsTbody">
+                    <tr>
+                      <td colspan="5" class="text-center text-white-50 py-4">No sessions booked.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-fitbit">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-white">Add payment</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="paymentForm" novalidate>
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="paymentPlan">Plan type</label>
+                <select class="form-select form-control-fitbit" id="paymentPlan" required>
+                  <option value="" selected disabled>Select a plan…</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Quarterly">Quarterly</option>
+                  <option value="Annual">Annual</option>
+                </select>
+                <div class="invalid-feedback">Select a plan type.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="paymentAmount">Amount (Rands)</label>
+                <input class="form-control form-control-fitbit" id="paymentAmount" type="number" step="0.01" min="0" placeholder="Amount in R" required />
+                <div class="invalid-feedback">Enter a valid amount.</div>
+              </div>
+              <input type="hidden" id="paymentPurpose" value="manual" />
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="paymentDate">Date</label>
+                <input class="form-control form-control-fitbit" id="paymentDate" type="date" required />
+                <div class="invalid-feedback">Pick a date.</div>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-fitbit" type="submit">Save payment</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-fitbit">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold text-white">Book a session</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-white-50 small mb-3">
+              Trainer: <span class="text-white fw-semibold" id="bookingTrainerName">—</span>
+            </div>
+            <form id="bookingForm" novalidate>
+              <input type="hidden" id="bookingTrainerId" />
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="sessionDate">Date</label>
+                <input class="form-control form-control-fitbit" id="sessionDate" type="date" required />
+                <div class="invalid-feedback">Pick a date.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="sessionTime">Time</label>
+                <input class="form-control form-control-fitbit" id="sessionTime" type="time" required />
+                <div class="invalid-feedback">Pick a time.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label text-white-50" for="sessionFocus">Focus</label>
+                <input class="form-control form-control-fitbit" id="sessionFocus" type="text" placeholder="Strength, cardio, mobility…" minlength="2" required />
+                <div class="invalid-feedback">Enter a short focus.</div>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-fitbit" type="submit">Book session</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      window.FitBitApp?.bootstrap?.();
+      window.FitBitApp?.pages?.dashboard?.();
+    </script>
+  </body>
+</html>

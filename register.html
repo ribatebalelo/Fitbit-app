@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FitBit Gym | Register</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="app-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fitbit border-bottom border-fitbit">
+      <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="./index.html">
+          <span class="brand-mark">FB</span>
+          FitBit Gym
+        </a>
+        <div class="ms-auto d-flex gap-2">
+          <a class="btn btn-outline-fitbit btn-sm" href="./login.html">Login</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-9 col-lg-7">
+          <div class="card card-fitbit shadow-lg">
+            <div class="card-body p-4 p-lg-5">
+              <h1 class="h3 fw-bold text-white mb-1">Create your account</h1>
+              <p class="text-white-50 mb-4">Register as a member, then wait for admin approval.</p>
+
+              <div id="alertHost"></div>
+
+              <form id="registerForm" class="row g-3" novalidate>
+                <div class="col-12">
+                  <label class="form-label text-white-50" for="fullName">Full Name</label>
+                  <input class="form-control form-control-fitbit" id="fullName" type="text" autocomplete="name" minlength="2" required />
+                  <div class="invalid-feedback">Please enter your full name.</div>
+                </div>
+
+                <div class="col-md-6">
+                  <label class="form-label text-white-50" for="email">Email</label>
+                  <input class="form-control form-control-fitbit" id="email" type="email" autocomplete="email" required />
+                  <div class="invalid-feedback">Please enter a valid email.</div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label text-white-50" for="password">Password</label>
+                  <input class="form-control form-control-fitbit" id="password" type="password" autocomplete="new-password" minlength="4" required />
+                  <div class="invalid-feedback">Password must be at least 4 characters.</div>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label text-white-50" for="plan">Membership Plan</label>
+                  <select class="form-select form-control-fitbit" id="plan" required>
+                    <option value="" selected disabled>Select a plan…</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="Annual">Annual</option>
+                  </select>
+                  <div class="invalid-feedback">Please select a plan.</div>
+                </div>
+
+                <div class="col-12 d-flex flex-wrap gap-2 mt-2">
+                  <button class="btn btn-fitbit btn-lg" type="submit">Create account</button>
+                  <a class="btn btn-outline-fitbit btn-lg" href="./login.html">I already have an account</a>
+                </div>
+
+                <div class="col-12">
+                  <div class="text-white-50 small">
+                    By registering you agree this is a mock system. Data is stored in your browser (localStorage).
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script>
+      window.FitBitApp?.bootstrap?.();
+      window.FitBitApp?.pages?.register?.();
+    </script>
+  </body>
+</html>
